@@ -58,3 +58,5 @@ class Directory extends React.Component{
 }
 
 export default Directory;
+
+//'/' => HomePage homepage component => Directory directory component => MenuItem menu-item component

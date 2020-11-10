@@ -20,6 +20,8 @@ const CollectionPreview = ({title, items}) => (
 
 export default CollectionPreview;
 
+//route '/shop' => ShopPage shop.component => CollectionPreview collection-preview component => CollectionItem collection-item component
+
 // replace item in map function with component => collection-item
 
 // .map(item => (
