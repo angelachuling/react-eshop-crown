@@ -1,5 +1,6 @@
 export const addItemToCart = (cartItems, cartItemToAdd) => {
     //check if cardItemToAdd exists in cartItems pool
+    console.log('cartItems, cartItemToAdd', cartItems, cartItemToAdd )
     const existingCartItem = cartItems.find(cartItem => cartItem.id === cartItemToAdd.id);
 
     if (existingCartItem) {
@@ -7,7 +8,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
         return cartItems.map(cartItem => 
             cartItem.id === cartItemToAdd.id ? 
             //the existing cardItem, same as cardItemToAdd, has its quantity increased by 1 
-            {...cartItem, quantiy: cartItem.quantity + 1} : cartItem
+            {...cartItem, quantity: cartItem.quantity + 1} : cartItem
             //the one doesnt match remains unchanged
         );
     }
@@ -17,3 +18,19 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
 };
 
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+    const existingCartItem = cartItems.find(
+      cartItem => cartItem.id === cartItemToRemove.id
+    );
+  
+    if (existingCartItem.quantity === 1) {
+      return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id);
+    }
+  
+    //if not equal to 1
+    return cartItems.map(cartItem =>
+      cartItem.id === cartItemToRemove.id
+        ? { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    );
+  };
