@@ -17,7 +17,7 @@ const cartReducer = (state=INITIAL_STATE, action) => {
             return{
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
-                //cartItems: [...state.cartItems, action.payload]
+                //consolidate cartItems and give quantity value
             }   
         case CartActionTypes.CLEAR_ITEM_FROM_CART:
             return {
