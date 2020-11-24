@@ -49,6 +49,37 @@ const config = {
 
   firebase.initializeApp(config);
 
+  //create collection and documents. objectToAdd is an array.
+  export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
+    console.log(collectionRef);
+
+    //batch can group all the doc creation calls into one request to db.
+    const batch = firestore.batch();
+    objectToAdd.forEach(obj => {
+      //can specify what to be document id in db by collectionRef.doc(obj.title), otherwise unique id created systematically
+      const newDocRef = collectionRef.doc(); 
+      batch.set(newDocRef, obj);
+
+    });
+    batch.commit()
+  };
+
+  //take docs from snapshot object. get data from each doc and only take 'title' and 'name' from it. then make an object for each and form an array
+  export const convertCollectionsSnapShotToMap = (collections) =>{
+    const transformedCollection = collections.docs.map(doc =>{
+      const {title, items} = doc.data();
+
+      return {
+        routeName: encodeURI(title.toLowerCase()), //covert wired character string to recognizable one
+        id: doc.id,
+        title,
+        items
+      }
+    });
+    console.log('transformedCollection', transformedCollection);
+  }
+
   export const auth = firebase.auth();
   export const firestore = firebase.firestore();
 

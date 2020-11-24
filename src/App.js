@@ -17,6 +17,7 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import {setCurrentUser} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
 
+
 class App extends React.Component{
 
   //replaced by props created by mapDispatchToProps and mapStateToProps
@@ -57,6 +58,7 @@ class App extends React.Component{
             id: snapShot.id,
               ...snapShot.data()
           });
+
           console.log('this.props.currentUser', this.props.currentUser);
           /*this.setState({
             currentUser: {
@@ -73,6 +75,7 @@ class App extends React.Component{
         console.log('userAuth is null');
         //this.setState({currentUser: userAuth});
         setCurrentUser(userAuth);
+
       } 
     })
   }
