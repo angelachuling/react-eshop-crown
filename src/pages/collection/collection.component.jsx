@@ -18,7 +18,7 @@ const CollectionPage = ({collection}) => {
     </div>
 )};
 
-//second argument, ownProps in this case, is an object containing all the props passed from <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />. The props in this case is match object given by Router.
+//second argument, ownProps in this case, is an object containing {match, history, location} passed from <Route exact path={`${match.path}/:collectionId`} component={CollectionPage} />. 
 //match = {isExact: true, {params: {collectionId: 'hats'}, {path: '/shop/:categoryId'}, {url: '/shop/hats}'}}
 const mapStateToProps = (state, ownProps) => ({
     collection: selectCollection(ownProps.match.params.collectionId)(state)
